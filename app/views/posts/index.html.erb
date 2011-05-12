@@ -1,0 +1,40 @@
+<h1>Posts for <%= link_to @user.name, @user %></h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+	<th>Description</th>
+  </tr>
+
+<!-- START:start -->
+<% for post in @posts -%>
+  <!-- render post attributes -->
+<!-- END:start -->
+
+  <tr>
+    <td><%=h post.title %></td>
+    <td><%=h post.description %></td>
+    
+    <td>
+  <!-- START:start -->
+  <%= link_to 'Show', 
+        user_post_path(@user, post) %> |
+          
+  <%= link_to 'Edit', 
+        edit_user_post_path(@user, post) %> |
+  
+  <%= link_to 'Destroy', 
+        user_post_path(@user, post), 
+        :confirm => 'Are you sure?', 
+        :method => :delete %>          
+  <!-- END:start -->
+    </td>
+  </tr>
+<!-- START:start -->
+<% end -%>
+<!-- END:start -->
+</table>
+
+<br />
+
+<%= link_to 'New post', new_user_post_path(@user) %>
