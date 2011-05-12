@@ -11,3 +11,4 @@
 <%= link_to 'Edit', 
             edit_user_post_path(@user, @post) %> |
 <%= link_to 'Back', user_posts_path(@user) %>
+<%= button_to 'Logout', logout_path, :method => :delete	%>

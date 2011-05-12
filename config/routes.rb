@@ -1,8 +1,5 @@
 Blogger::Application.routes.draw do
 
-
-   get "admin/index"
-
     root :to => "users#index"
 
     controller :sessions do
