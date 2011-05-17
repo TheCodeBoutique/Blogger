@@ -1,0 +1,21 @@
+<h1>New post</h1>
+
+
+<!-- #START:form_for -->
+<% form_for([@user, @post]) do |f| -%>
+  <p>
+    <b>Title</b><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <b>Description</b><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end -%>
+<!-- #END:form_for -->
+
+<%= link_to 'Back', user_posts_path(@user) %>
+<%= button_to 'Logout', logout_path, :method => :delete	%>

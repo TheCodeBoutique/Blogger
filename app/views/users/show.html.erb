@@ -1,21 +1,19 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
-  <%= @user.name %>
+  <%=h @user.name %>
 </p>
 
+<!-- #START:link_registrations -->
 <p>
-  <b>Hashed password:</b>
-  <%= @user.hashed_password %>
+  <%= link_to 'Posts', 
+              user_posts_path(@user) %>
 </p>
+<!-- #END:link_registrations -->
 
-<p>
-  <b>Salt:</b>
-  <%= @user.salt %>
-</p>
-
-
+<!-- #START:register -->
+<%= link_to 'Post', new_user_post_path(@user) %>
+<!-- #END:register -->
+|
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 <%= button_to 'Logout', logout_path, :method => :delete	%>

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   helper :all
- # before_filter :authorize
+  before_filter :authorize
   protect_from_forgery
 
   
