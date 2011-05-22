@@ -1,41 +1,25 @@
-<h1>Posts for <%= link_to @user.name, @user %></h1>
+<h1>Listing posts</h1>
 
 <table>
   <tr>
     <th>Title</th>
-	<th>Description</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
-<!-- START:start -->
-<% for post in @posts -%>
-  <!-- render post attributes -->
-<!-- END:start -->
-
+<% @posts.each do |post| %>
   <tr>
-    <td><%=h post.title %></td>
-    <td><%=h post.description %></td>
-    
-    <td>
-  <!-- START:start -->
-  <%= link_to 'Show', 
-        user_post_path(@user, post) %> |
-          
-  <%= link_to 'Edit', 
-        edit_user_post_path(@user, post) %> |
-  
-  <%= link_to 'Destroy', 
-        user_post_path(@user, post), 
-        :confirm => 'Are you sure?', 
-        :method => :delete %>          
-  <!-- END:start -->
-    </td>
+    <td><%= post.title %></td>
+    <td><%= post.description %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
-<!-- START:start -->
-<% end -%>
-<!-- END:start -->
+<% end %>
 </table>
 
 <br />
 
-<%= link_to 'New post', new_user_post_path(@user) %>
-<%= button_to 'Logout', logout_path, :method => :delete	%>
+<%= link_to 'New Post', new_post_path %>
