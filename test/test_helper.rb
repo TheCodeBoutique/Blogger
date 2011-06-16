@@ -9,5 +9,32 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  # dereference(user, :users) => user
+  # dereference(:fred, :users) => users(:fred)
+  def dereference(argument, collection)
+    if Symbol === argument
+      send(collection, argument)
+    else
+      argument
+    end
+  end
+  
+  def login_as(user_record)
+    logout
+    user = dereference(user_record, :users) if user_record
+    @request.session[:user_id] = user_record ? user.id : nil
+    user
+  end
+  
+  def logout
+    @request.session[:user_id] = nil
+    @controller.instance_variable_set("@current_user", nil)
+  end
+  
+  def login_via_api_as(user_record, password="testing")
+    logout
+    user = dereference(user_record, :users) if user_record
+    token = Base64.encode64("#{user.username}:#{password}")
+    @request.env['HTTP_AUTHORIZATION'] = "Basic: #{token}"
+  end
 end

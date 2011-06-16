@@ -4,4 +4,5 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-Blogger::Application.load_tasks
+Saveup::Application.load_tasks
+
